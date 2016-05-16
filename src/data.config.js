@@ -1,4 +1,4 @@
-exports.WorldCoud = {
+exports.World_Cloud_Data = {
   'Language': 300,
   'Tools': 323,
   'DataVis': 150,
