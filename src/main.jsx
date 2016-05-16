@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hello from './Hello.jsx'
+import App from './App.jsx';
+import d3 from 'd3';
 
-
-ReactDOM.render(<Hello/>, document.getElementById('container'));
+ReactDOM.render(<App />, document.getElementById('container'));
