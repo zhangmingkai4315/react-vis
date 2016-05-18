@@ -1,27 +1,28 @@
 import React from 'react';
 import uuid from 'uuid';
 export default class LineChart extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
   componentDidMount() {
 
   }
+  initalChart() {
+
+  }
   render() {
+    this.initalChart();
     return (
       <div>
         <div><h2>{this.props.title}</h2></div> 
-        <div id={uuid.v1()}></div>
+        <svg id={this.props.id}></svg>
       </div>
     );
   }
 }
 
 LineChart.propTypes = {
-  data: React.PropTypes.array,
-  title: React.PropTypes.string,
+
 };
 LineChart.defaultProps = {
+  id: uuid.v1(),
   title: 'React Line Chart Bar',
   data: [{
     num: 1,
