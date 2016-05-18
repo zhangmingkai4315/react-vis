@@ -1,33 +1,28 @@
-var http = require('http');
-
-var express = require('express');
-
-var app = express();
+const http = require('http');
+const express = require('express');
+const app = express();
 
 app.use(require('morgan')('short'));
-(function() {
-  var webpack = require('webpack');
-  var webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : './webpack.config');
-  var compiler = webpack(webpackConfig);
+(function () {
+  const webpack = require('webpack');
+  const webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : './webpack.config');
+  const compiler = webpack(webpackConfig);
   app.use(require("webpack-dev-middleware")(compiler, {
     noInfo: true,
-    publicPath: webpackConfig.output.publicPath
+    publicPath: webpackConfig.output.publicPath,
   }));
   app.use(require("webpack-hot-middleware")(compiler, {
     log: console.log,
     path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
+    heartbeat: 10 * 1000,
   }));
 })();
-
-
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/index.html`);
 });
-
 if (require.main === module) {
-  var server = http.createServer(app);
-  server.listen(process.env.PORT || 3000, function() {
-    console.log("Listening on %j", server.address());
+  const server = http.createServer(app);
+  server.listen(process.env.PORT || 3000, () => {
+    console.log('Listening on %j', server.address());
   });
 }
